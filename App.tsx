@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MapView, { Region, Marker } from 'react-native-maps';
+
+import { View, Button, Text, Incubator } from 'react-native-ui-lib';
+
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import * as Location from 'expo-location';
 
@@ -58,15 +62,14 @@ export default function App() {
         [setMapCenterCoordinates],
     );
 
+    const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
+
     const markerPosition = mapCenterCoordinates ?? userLocation;
 
     return (
-        <View style={styles.container}>
-            <View style={styles.navMenuButton}>
-                <Button title="Menu" />
-            </View>
+        <View style={StyleSheet.absoluteFillObject}>
             <MapView
-                style={styles.map}
+                style={StyleSheet.absoluteFillObject}
                 mapPadding={{
                     top: 30,
                     left: 80,
@@ -85,34 +88,84 @@ export default function App() {
                     tracksViewChanges
                 />
             </MapView>
-            <View style={styles.pickupButton}>
-                <Button title="Solicitar Viaje" />
+            <View
+                width={60}
+                style={{
+                    position: 'absolute',
+                    top: 50,
+                    left: 20,
+                }}
+            >
+                <FontAwesome.Button
+                    name="navicon"
+                    backgroundColor="blue"
+                    borderRadius={15}
+                    iconStyle={{
+                        position: 'relative',
+                        left: 8,
+                    }}
+                    size={32}
+                    color="#eee"
+                    onPress={() => {
+                        setIsLeftNavOpen(true);
+                    }}
+                />
             </View>
+            <View
+                style={{
+                    position: 'absolute',
+                    bottom: 30,
+                    width: '80%',
+                    alignSelf: 'center',
+                }}
+            >
+                <Button label="Solicitar Viaje" backgroundColor="blue" />
+            </View>
+            <Incubator.Dialog
+                visible={isLeftNavOpen}
+                onDismiss={() => setIsLeftNavOpen(false)}
+                direction="left"
+                width="80%"
+                containerStyle={{
+                    height: '100%',
+                    maxHeight: '100%',
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                }}
+                modalProps={{
+                    statusBarTranslucent: true,
+                }}
+            >
+                <View
+                    width="100%"
+                    height="100%"
+                    paddingV-50
+                    paddingH-20
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <View>
+                        <Text>User Goes here</Text>
+                        <View
+                            marginT-40
+                            style={{
+                                display: 'flex',
+                                rowGap: 10,
+                            }}
+                        >
+                            <Button label="Viajes" />
+                            <Button label="Viaje en moto" />
+                            <Button label="Encomienda" />
+                        </View>
+                    </View>
+                    <Button label="Cambiar a conductor" />
+                </View>
+            </Incubator.Dialog>
             <StatusBar style="auto" />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    navMenuButton: {
-        position: 'absolute',
-        top: '5%',
-        left: '5%',
-        alignSelf: 'flex-start',
-    },
-    map: {
-        position: 'absolute',
-        top: 0,
-        height: '100%',
-        width: '100%',
-    },
-    pickupButton: {
-        position: 'absolute',
-        top: '90%',
-        alignSelf: 'center',
-        width: '80%',
-    },
-});
