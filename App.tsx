@@ -3,11 +3,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Region, Marker } from 'react-native-maps';
 
-import { View, Button, Text, Incubator } from 'react-native-ui-lib';
-
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { View, Button } from 'react-native-ui-lib';
 
 import * as Location from 'expo-location';
+import { LeftNav } from './Components';
 
 async function getCurrentPosition() {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -62,8 +61,6 @@ export default function App() {
         [setMapCenterCoordinates],
     );
 
-    const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
-
     const markerPosition = mapCenterCoordinates ?? userLocation;
 
     return (
@@ -89,29 +86,6 @@ export default function App() {
                 />
             </MapView>
             <View
-                width={60}
-                style={{
-                    position: 'absolute',
-                    top: 50,
-                    left: 20,
-                }}
-            >
-                <FontAwesome.Button
-                    name="navicon"
-                    backgroundColor="blue"
-                    borderRadius={15}
-                    iconStyle={{
-                        position: 'relative',
-                        left: 8,
-                    }}
-                    size={32}
-                    color="#eee"
-                    onPress={() => {
-                        setIsLeftNavOpen(true);
-                    }}
-                />
-            </View>
-            <View
                 style={{
                     position: 'absolute',
                     bottom: 30,
@@ -121,50 +95,7 @@ export default function App() {
             >
                 <Button label="Solicitar Viaje" backgroundColor="blue" />
             </View>
-            <Incubator.Dialog
-                visible={isLeftNavOpen}
-                onDismiss={() => setIsLeftNavOpen(false)}
-                direction="left"
-                width="80%"
-                containerStyle={{
-                    height: '100%',
-                    maxHeight: '100%',
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
-                }}
-                modalProps={{
-                    statusBarTranslucent: true,
-                }}
-            >
-                <View
-                    width="100%"
-                    height="100%"
-                    paddingV-50
-                    paddingH-20
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <View>
-                        <Text>User Goes here</Text>
-                        <View
-                            marginT-40
-                            style={{
-                                display: 'flex',
-                                rowGap: 10,
-                            }}
-                        >
-                            <Button label="Viajes" />
-                            <Button label="Viaje en moto" />
-                            <Button label="Encomienda" />
-                        </View>
-                    </View>
-                    <Button label="Cambiar a conductor" />
-                </View>
-            </Incubator.Dialog>
+            <LeftNav />
             <StatusBar style="auto" />
         </View>
     );
