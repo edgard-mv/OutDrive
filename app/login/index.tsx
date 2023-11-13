@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, TextField, Dividers, View } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../Components';
+import { FullScreenFormTemplate } from '../../Components';
+import { useRouter } from 'expo-router';
 
-export function Login() {
+export default function Login() {
+    const router = useRouter();
+
     return (
         <>
             <FullScreenFormTemplate
@@ -15,19 +18,32 @@ export function Login() {
                             rowGap: 10,
                         }}
                     >
-                        <Button label="Iniciar Sesión" />
-                        <Button outline label="Registrarse" />
+                        <Button
+                            label="Iniciar Sesión"
+                            onPress={() => {
+                                router.replace('/');
+                            }}
+                        />
+                        <Button
+                            outline
+                            label="Registrarse"
+                            onPress={() => {
+                                router.replace('/signup');
+                            }}
+                        />
                         <Button link label="Recuperar contraseña" />
                     </View>
                 }
             >
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Usuario"
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Contraseña"
                     secureTextEntry

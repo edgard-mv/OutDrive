@@ -3,13 +3,13 @@ import { useState } from 'react';
 import {
     View,
     Button,
-    Text,
     Incubator,
     Picker,
     TextField,
     Dividers,
 } from 'react-native-ui-lib';
 import { formatAmount } from '../Utils';
+import { UserCard } from './UserCard';
 
 type FundsTransferDialogProps = {
     isOpen: boolean;
@@ -83,18 +83,17 @@ export function FundsTransferDialog({
                         rowGap: 10,
                     }}
                 >
-                    <Text
-                        text60BO
-                        style={{
-                            textAlign: 'center',
-                        }}
-                    >
-                        Lionel Messi
-                    </Text>
-                    <Text text60>
-                        <Text text60BO>Saldo Actual: </Text>
-                        {formatAmount(450)}
-                    </Text>
+                    <UserCard
+                        userName="Leonel Messi"
+                        imgSrc="https://img.a.transfermarkt.technology/portrait/big/28003-1694590254.jpg?lm=1"
+                        content={[
+                            {
+                                text: `Saldo: ${formatAmount(450)}`,
+                                text70BO: true,
+                            },
+                        ]}
+                        imgAlignment="right"
+                    />
                     <View marginT-20>
                         <Picker
                             value={paymentMethod}

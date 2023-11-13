@@ -1,14 +1,7 @@
 import { ReactNode } from 'react';
 
-import { UserModeProvider } from './Contexts';
-import {
-    IndexPage,
-    Login,
-    SignUp,
-    ClientSignUp,
-    DriverSignUp,
-    VehicleRegistration,
-} from './Pages';
+import { UserModeProvider } from '../Contexts';
+import { IndexPage } from '../IndexPage';
 import { Colors } from 'react-native-ui-lib';
 
 Colors.loadDesignTokens({
@@ -23,10 +16,6 @@ export default function App() {
     return (
         <GlobalContextProvider>
             <IndexPage />
-            {/* <Login /> */}
-            {/* <ClientSignUp /> */}
-            {/* <DriverSignUp /> */}
-            {/* <VehicleRegistration /> */}
         </GlobalContextProvider>
     );
 }

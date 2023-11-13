@@ -12,6 +12,8 @@ import { FundsTransferDialog } from './FundsTransferDialog';
 import { UserMode, useUserModeState } from '../Contexts';
 import { UserCard } from './UserCard';
 
+import { useRouter } from 'expo-router';
+
 function MenuOption({
     onPress,
     label,
@@ -35,6 +37,7 @@ function MenuOption({
 }
 
 export function LeftNav() {
+    const router = useRouter();
     const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
 
     const [isFundsTransferOpen, setIsFundsTransferOpen] = useState(false);
@@ -145,6 +148,12 @@ export function LeftNav() {
                                     : 'Cliente'
                             }`}
                             onPress={switchUserMode}
+                        />
+                        <MenuOption
+                            label="Cerrar Sesión"
+                            onPress={() => {
+                                router.push('/login');
+                            }}
                         />
                     </View>
                 </View>

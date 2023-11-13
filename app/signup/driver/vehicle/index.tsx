@@ -1,44 +1,56 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, TextField, Dividers, View, Card } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../Components';
+import { FullScreenFormTemplate } from '../../../../Components';
+import { useRouter } from 'expo-router';
 
-export function VehicleRegistration() {
+export default function VehicleRegistration() {
+    const router = useRouter();
+
     return (
         <>
             <FullScreenFormTemplate
                 title="Registro de Vehículo"
                 actionButtons={
                     <View width="100%">
-                        <Button label="Confirmar" />
+                        <Button
+                            label="Confirmar"
+                            onPress={() => {
+                                router.replace('/');
+                            }}
+                        />
                     </View>
                 }
             >
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Placa"
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Color"
-                    secureTextEntry
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Marca"
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Modelo"
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Año"
                     grey10

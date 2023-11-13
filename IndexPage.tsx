@@ -2,9 +2,9 @@ import { useCallback, useState } from 'react';
 import { View } from 'react-native-ui-lib';
 
 import MapView, { Region, Marker } from 'react-native-maps';
-import { LeftNav, MapOverlay } from '../Components';
+import { LeftNav, MapOverlay } from './Components';
 import { StatusBar } from 'expo-status-bar';
-import { GeoLocation } from '../Utils';
+import { GeoLocation } from './Utils';
 import { StyleSheet } from 'react-native';
 
 export function IndexPage() {

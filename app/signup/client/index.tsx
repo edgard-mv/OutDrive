@@ -1,15 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, TextField, Dividers, View, Avatar } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../Components';
+import { FullScreenFormTemplate } from '../../../Components';
+import { useRouter } from 'expo-router';
 
-export function ClientSignUp() {
+export default function ClientSignUp() {
+    const router = useRouter();
+
     return (
         <>
             <FullScreenFormTemplate
                 title="Registro Cliente"
                 actionButtons={
                     <View width="100%">
-                        <Button label="Confirmar" />
+                        <Button
+                            label="Confirmar"
+                            onPress={() => {
+                                router.replace('/');
+                            }}
+                        />
                     </View>
                 }
             >
@@ -23,19 +31,21 @@ export function ClientSignUp() {
                     />
                 </View>
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Nombre"
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Teléfono"
-                    secureTextEntry
                     grey10
                     style={{ ...Dividers.d10 }}
                 />
                 <TextField
+                    floatingPlaceholder
                     text40
                     placeholder="Correo electrónico"
                     grey10
