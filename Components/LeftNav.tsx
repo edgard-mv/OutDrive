@@ -1,8 +1,38 @@
 import { useCallback, useState } from 'react';
-import { View, Button, Text, Incubator } from 'react-native-ui-lib';
+import {
+    View,
+    Button,
+    Incubator,
+    Colors,
+    BorderRadiuses,
+    Dividers,
+} from 'react-native-ui-lib';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { FundsTransferDialog } from './FundsTransferDialog';
 import { UserMode, useUserModeState } from '../Contexts';
+import { UserCard } from './UserCard';
+
+function MenuOption({
+    onPress,
+    label,
+}: {
+    onPress: () => void;
+    label: string;
+}) {
+    return (
+        <Button
+            fullWidth
+            label={label}
+            onPress={onPress}
+            style={{
+                ...Dividers.d10,
+                height: 60,
+                justifyContent: 'flex-start',
+            }}
+            outline
+        />
+    );
+}
 
 export function LeftNav() {
     const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
@@ -20,6 +50,8 @@ export function LeftNav() {
         switchTo(UserMode.Client);
     }, [switchTo, userMode]);
 
+    const showAddFunds = userMode === UserMode.Client;
+
     return (
         <>
             <View
@@ -32,8 +64,8 @@ export function LeftNav() {
             >
                 <FontAwesome.Button
                     name="navicon"
-                    backgroundColor="blue"
-                    borderRadius={15}
+                    backgroundColor={Colors.$iconPrimary}
+                    borderRadius={BorderRadiuses.br50}
                     iconStyle={{
                         position: 'relative',
                         left: 8,
@@ -65,7 +97,6 @@ export function LeftNav() {
                     width="100%"
                     height="100%"
                     paddingV-50
-                    paddingH-20
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -73,32 +104,41 @@ export function LeftNav() {
                     }}
                 >
                     <View>
-                        <Text>User Goes here</Text>
-                        <View
-                            marginT-40
-                            style={{
-                                display: 'flex',
-                                rowGap: 10,
-                            }}
-                        >
-                            <Button label="Viajes" />
-                            <Button label="Viaje en moto" />
-                            <Button label="Encomienda" />
+                        <View paddingH-20>
+                            <UserCard
+                                userName="Leonel Messi"
+                                imgSrc="https://img.a.transfermarkt.technology/portrait/big/28003-1694590254.jpg?lm=1"
+                                content={[
+                                    {
+                                        text:
+                                            userMode === UserMode.Client
+                                                ? 'Pasajero'
+                                                : 'Conductor',
+                                    },
+                                ]}
+                                imgAlignment="right"
+                            />
+                        </View>
+                        <View marginT-40>
+                            <MenuOption label="Viajes" onPress={() => {}} />
+                            <MenuOption
+                                label="Viaje en moto"
+                                onPress={() => {}}
+                            />
+                            <MenuOption label="Encomienda" onPress={() => {}} />
                         </View>
                     </View>
-                    <View
-                        style={{
-                            rowGap: 10,
-                        }}
-                    >
-                        <Button
-                            label="Agregar fondos"
-                            onPress={() => {
-                                setIsFundsTransferOpen(true);
-                                setIsLeftNavOpen(false);
-                            }}
-                        />
-                        <Button
+                    <View>
+                        {showAddFunds && (
+                            <MenuOption
+                                label="Agregar fondos"
+                                onPress={() => {
+                                    setIsFundsTransferOpen(true);
+                                    setIsLeftNavOpen(false);
+                                }}
+                            />
+                        )}
+                        <MenuOption
                             label={`Cambiar a ${
                                 userMode === UserMode.Client
                                     ? 'Conductor'

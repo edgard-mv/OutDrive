@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { GeoLocation } from '../Utils';
 import { StyleSheet } from 'react-native';
 
-export default function Index() {
+export function IndexPage() {
     const userLocation = GeoLocation.useUserLocation();
 
     const [mapCenterCoordinates, setMapCenterCoordinates] =

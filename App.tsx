@@ -1,7 +1,19 @@
 import { ReactNode } from 'react';
 
 import { UserModeProvider } from './Contexts';
-import Index from './Pages/Index';
+import {
+    IndexPage,
+    Login,
+    SignUp,
+    ClientSignUp,
+    DriverSignUp,
+    VehicleRegistration,
+} from './Pages';
+import { Colors } from 'react-native-ui-lib';
+
+Colors.loadDesignTokens({
+    primaryColor: '#00004e',
+});
 
 function GlobalContextProvider({ children }: { children: ReactNode }) {
     return <UserModeProvider>{children}</UserModeProvider>;
@@ -10,7 +22,11 @@ function GlobalContextProvider({ children }: { children: ReactNode }) {
 export default function App() {
     return (
         <GlobalContextProvider>
-            <Index />
+            <IndexPage />
+            {/* <Login /> */}
+            {/* <ClientSignUp /> */}
+            {/* <DriverSignUp /> */}
+            {/* <VehicleRegistration /> */}
         </GlobalContextProvider>
     );
 }

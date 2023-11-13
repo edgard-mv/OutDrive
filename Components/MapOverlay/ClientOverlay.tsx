@@ -209,7 +209,6 @@ export function ClientOverlay() {
             >
                 <Button
                     label="Solicitar Viaje"
-                    backgroundColor="blue"
                     onPress={() => {
                         setCurrentPage(Pages.TripSelection);
                     }}
