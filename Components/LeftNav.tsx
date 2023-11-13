@@ -1,12 +1,24 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { View, Button, Text, Incubator } from 'react-native-ui-lib';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { FundsTransferDialog } from './FundsTransferDialog';
+import { UserMode, useUserModeState } from '../Contexts';
 
 export function LeftNav() {
     const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
 
     const [isFundsTransferOpen, setIsFundsTransferOpen] = useState(false);
+
+    const { switchTo, mode: userMode } = useUserModeState();
+
+    const switchUserMode = useCallback(() => {
+        if (userMode === UserMode.Client) {
+            switchTo(UserMode.Driver);
+            return;
+        }
+
+        switchTo(UserMode.Client);
+    }, [switchTo, userMode]);
 
     return (
         <>
@@ -86,7 +98,14 @@ export function LeftNav() {
                                 setIsLeftNavOpen(false);
                             }}
                         />
-                        <Button label="Cambiar a conductor" />
+                        <Button
+                            label={`Cambiar a ${
+                                userMode === UserMode.Client
+                                    ? 'Conductor'
+                                    : 'Cliente'
+                            }`}
+                            onPress={switchUserMode}
+                        />
                     </View>
                 </View>
             </Incubator.Dialog>

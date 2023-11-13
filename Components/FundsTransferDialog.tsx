@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
-import { View, Button, Text, Incubator, Picker } from 'react-native-ui-lib';
-
-function formatAmount(amount: number) {
-    return `$${amount} Pesos Colombianos`;
-}
+import {
+    View,
+    Button,
+    Text,
+    Incubator,
+    Picker,
+    TextField,
+    Dividers,
+} from 'react-native-ui-lib';
+import { formatAmount } from '../Utils';
 
 type FundsTransferDialogProps = {
     isOpen: boolean;
@@ -79,37 +84,51 @@ export function FundsTransferDialog({
                     }}
                 >
                     <Text
-                        text50BO
+                        text60BO
                         style={{
                             textAlign: 'center',
                         }}
                     >
                         Lionel Messi
                     </Text>
-                    <Text text50>
-                        <Text text50BO>Saldo Actual: </Text>
+                    <Text text60>
+                        <Text text60BO>Saldo Actual: </Text>
                         {formatAmount(450)}
                     </Text>
-                    <Picker
-                        value={paymentMethod}
-                        placeholder="Método de Pago"
-                        floatingPlaceholder
-                        mode={Picker.modes.SINGLE}
-                        onChange={(value) => {
-                            if (typeof value !== 'number') {
-                                return;
-                            }
-                            setPaymentMethod(value);
-                        }}
-                    >
-                        {PaymentMethods.map((item) => (
-                            <Picker.Item
-                                key={item.value}
-                                label={item.label}
-                                value={item.value}
-                            />
-                        ))}
-                    </Picker>
+                    <View marginT-20>
+                        <Picker
+                            value={paymentMethod}
+                            placeholder="Método de Pago"
+                            text60
+                            floatingPlaceholder
+                            mode={Picker.modes.SINGLE}
+                            onChange={(value) => {
+                                if (typeof value !== 'number') {
+                                    return;
+                                }
+                                setPaymentMethod(value);
+                            }}
+                            fieldStyle={{
+                                ...Dividers.d10,
+                            }}
+                        >
+                            {PaymentMethods.map((item) => (
+                                <Picker.Item
+                                    key={item.value}
+                                    label={item.label}
+                                    value={item.value}
+                                />
+                            ))}
+                        </Picker>
+                        <TextField
+                            text60
+                            placeholder="Monto"
+                            floatingPlaceholder
+                            fieldStyle={{
+                                ...Dividers.d10,
+                            }}
+                        />
+                    </View>
                 </View>
                 <View
                     style={{
