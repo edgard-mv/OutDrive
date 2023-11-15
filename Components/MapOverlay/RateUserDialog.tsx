@@ -1,16 +1,18 @@
-import { Incubator, View, Text, Button } from 'react-native-ui-lib';
+import { Incubator, View, Text, Button, Colors } from 'react-native-ui-lib';
 import { UserCard } from '../UserCard';
 import { useState } from 'react';
 import { TextField } from '../TextField';
 
+import { AirbnbRating } from 'react-native-ratings';
+
 export function RateUserDialog({
     isOpen,
     onConfirm,
-    defaultRate,
+    defaultRate = 3,
 }: {
     isOpen: boolean;
     onConfirm: (rate: number) => void;
-    defaultRate: 3;
+    defaultRate?: number;
 }) {
     const user = {
         id: 5,
@@ -30,7 +32,7 @@ export function RateUserDialog({
             direction="up"
             width="100%"
             containerStyle={{
-                height: 380,
+                height: 390,
             }}
             modalProps={{
                 statusBarTranslucent: true,
@@ -47,7 +49,7 @@ export function RateUserDialog({
                 <View>
                     <Text text50>Puntúa a {user.userName}</Text>
                     <View
-                        marginT-40
+                        marginT-20
                         style={{
                             display: 'flex',
                             rowGap: 10,
@@ -57,7 +59,7 @@ export function RateUserDialog({
                             imgSrc={user.imgSrc}
                             userName={user.userName}
                             containerStyle={{
-                                height: 90,
+                                height: 80,
                             }}
                             content={[
                                 {
@@ -70,6 +72,16 @@ export function RateUserDialog({
                                 },
                             ]}
                         />
+                        <View center marginT-10>
+                            <AirbnbRating
+                                count={5}
+                                defaultRating={defaultRate}
+                                size={35}
+                                showRating={false}
+                                onFinishRating={(val) => setRate(val)}
+                                selectedColor={Colors.yellow40}
+                            />
+                        </View>
                         <TextField placeholder="Comentario" />
                     </View>
                 </View>
