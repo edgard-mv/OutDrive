@@ -1,15 +1,9 @@
 import { useState } from 'react';
 
-import {
-    View,
-    Button,
-    Incubator,
-    Picker,
-    TextField,
-    Dividers,
-} from 'react-native-ui-lib';
+import { View, Button, Incubator, Picker, Dividers } from 'react-native-ui-lib';
 import { formatAmount } from '../Utils';
 import { UserCard } from './UserCard';
+import { TextField } from './TextField';
 
 type FundsTransferDialogProps = {
     isOpen: boolean;
@@ -110,6 +104,9 @@ export function FundsTransferDialog({
                             fieldStyle={{
                                 ...Dividers.d10,
                             }}
+                            floatingPlaceholderStyle={{
+                                textAlign: 'center',
+                            }}
                         >
                             {PaymentMethods.map((item) => (
                                 <Picker.Item
@@ -123,9 +120,6 @@ export function FundsTransferDialog({
                             text60
                             placeholder="Monto"
                             floatingPlaceholder
-                            fieldStyle={{
-                                ...Dividers.d10,
-                            }}
                         />
                     </View>
                 </View>

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, TextField, Dividers, View, Avatar } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../../../Components';
+import { Button, View, Avatar } from 'react-native-ui-lib';
+import { FullScreenFormTemplate, TextField } from '../../../Components';
 import { useRouter } from 'expo-router';
 
 export default function DriverSignUp() {
@@ -30,48 +30,12 @@ export default function DriverSignUp() {
                         label="Foto de Perfil"
                     />
                 </View>
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Nombre Completo"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Teléfono"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Correo electrónico"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Facebook"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Licencia"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Identificación personal"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
+                <TextField placeholder="Nombre Completo" />
+                <TextField placeholder="Teléfono" />
+                <TextField placeholder="Correo electrónico" />
+                <TextField placeholder="Facebook" />
+                <TextField placeholder="Licencia" />
+                <TextField placeholder="Identificación personal" />
             </FullScreenFormTemplate>
             <StatusBar style="auto" />
         </>

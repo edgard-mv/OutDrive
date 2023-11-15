@@ -2,7 +2,8 @@ import { useCallback, useState } from 'react';
 import { View } from 'react-native-ui-lib';
 
 import MapView, { Region, Marker } from 'react-native-maps';
-import { LeftNav, MapOverlay } from './Components';
+import { LeftNav } from './Components';
+import { MapOverlay } from './Components/MapOverlay';
 import { StatusBar } from 'expo-status-bar';
 import { GeoLocation } from './Utils';
 import { StyleSheet } from 'react-native';

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, TextField, Dividers, View, Card } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../../../../Components';
+import { Button, View, Card } from 'react-native-ui-lib';
+import { FullScreenFormTemplate, TextField } from '../../../../Components';
 import { useRouter } from 'expo-router';
 
 export default function VehicleRegistration() {
@@ -21,41 +21,11 @@ export default function VehicleRegistration() {
                     </View>
                 }
             >
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Placa"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Color"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Marca"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Modelo"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Año"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
+                <TextField placeholder="Placa" />
+                <TextField placeholder="Color" />
+                <TextField placeholder="Marca" />
+                <TextField placeholder="Modelo" />
+                <TextField placeholder="Año" />
                 <View
                     style={{
                         display: 'flex',

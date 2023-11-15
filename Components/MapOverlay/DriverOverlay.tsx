@@ -5,13 +5,12 @@ import {
     Text,
     Button,
     Incubator,
-    TextField,
-    Dividers,
 } from 'react-native-ui-lib';
 
 import { ScrollView } from 'react-native';
 import { useState } from 'react';
 import { UserCard } from '../UserCard';
+import { TextField } from '../TextField';
 
 function PassengerCard({
     userName,
@@ -160,14 +159,7 @@ function TripQuotationDialog({
                             rowGap: 10,
                         }}
                     >
-                        <TextField
-                            text60
-                            placeholder="Monto"
-                            floatingPlaceholder
-                            fieldStyle={{
-                                ...Dividers.d10,
-                            }}
-                        />
+                        <TextField placeholder="Monto" />
                     </View>
                 </View>
                 <View

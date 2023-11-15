@@ -14,12 +14,12 @@ export function FullScreenFormTemplate({
     showLogo?: boolean;
 }) {
     return (
-        <View flex height="100%" width="100%" marginT-50>
+        <View flex height="100%" width="100%" marginV-20>
             <View flex>
                 <View paddingH-25 paddingT-50>
                     <Text
                         blue50
-                        text20
+                        text30
                         style={{
                             ...Dividers.d10,
                         }}
@@ -48,19 +48,20 @@ export function FullScreenFormTemplate({
                         >
                             {children}
                         </View>
-                        {actionButtons != null && (
-                            <View
-                                marginT-50
-                                center
-                                style={{
-                                    rowGap: 20,
-                                }}
-                            >
-                                {actionButtons}
-                            </View>
-                        )}
                     </View>
                 </ScrollView>
+                {actionButtons != null && (
+                    <View
+                        paddingH-25
+                        marginT-50
+                        center
+                        style={{
+                            rowGap: 20,
+                        }}
+                    >
+                        {actionButtons}
+                    </View>
+                )}
             </View>
         </View>
     );

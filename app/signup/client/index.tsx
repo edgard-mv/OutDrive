@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, TextField, Dividers, View, Avatar } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../../../Components';
+import { Button, View, Avatar } from 'react-native-ui-lib';
+import { FullScreenFormTemplate, TextField } from '../../../Components';
 import { useRouter } from 'expo-router';
 
 export default function ClientSignUp() {
@@ -30,27 +30,9 @@ export default function ClientSignUp() {
                         label="Foto de Perfil"
                     />
                 </View>
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Nombre"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Teléfono"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Correo electrónico"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
+                <TextField placeholder="Nombre" />
+                <TextField placeholder="Teléfono" />
+                <TextField placeholder="Correo electrónico" />
             </FullScreenFormTemplate>
             <StatusBar style="auto" />
         </>

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, TextField, Dividers, View } from 'react-native-ui-lib';
-import { FullScreenFormTemplate } from '../../Components';
+import { Button, View } from 'react-native-ui-lib';
+import { FullScreenFormTemplate, TextField } from '../../Components';
 import { useRouter } from 'expo-router';
 
 export default function Login() {
@@ -35,21 +35,8 @@ export default function Login() {
                     </View>
                 }
             >
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Usuario"
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
-                <TextField
-                    floatingPlaceholder
-                    text40
-                    placeholder="Contraseña"
-                    secureTextEntry
-                    grey10
-                    style={{ ...Dividers.d10 }}
-                />
+                <TextField placeholder="Usuario" />
+                <TextField placeholder="Contraseña" secureTextEntry />
             </FullScreenFormTemplate>
             <StatusBar style="auto" />
         </>
