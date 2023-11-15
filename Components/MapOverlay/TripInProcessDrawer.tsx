@@ -96,7 +96,6 @@ export function TripInProcessDrawer({
                                 {showEndTripButton && (
                                     <Button
                                         label="Terminar Carrera"
-                                        outline
                                         onPress={() => {
                                             openConfirmation(
                                                 '¿Ha terminado el viaje con éxito?',

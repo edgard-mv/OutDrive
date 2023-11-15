@@ -11,6 +11,7 @@ import { ScrollView } from 'react-native';
 import { useState } from 'react';
 import { UserCard } from '../UserCard';
 import { TextField } from '../TextField';
+import { TripInProcessDrawer } from './TripInProcessDrawer';
 
 function PassengerCard({
     userName,
@@ -124,10 +125,12 @@ const testUsers = [
 
 function TripQuotationDialog({
     onClose,
+    onConfirm,
     isOpen,
 }: {
     isOpen: boolean;
     onClose: () => void;
+    onConfirm: () => void;
 }) {
     return (
         <Incubator.Dialog
@@ -170,7 +173,7 @@ function TripQuotationDialog({
                     <Button
                         label="Enviar"
                         onPress={() => {
-                            onClose();
+                            onConfirm();
                         }}
                     />
                 </View>
@@ -179,8 +182,26 @@ function TripQuotationDialog({
     );
 }
 
+enum Pages {
+    Initial,
+    TripInProcess,
+}
+
 export function DriverOverlay() {
     const [isTripQuotationOpen, setIsTripQuotationOpen] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(Pages.Initial);
+
+    if (currentPage === Pages.TripInProcess) {
+        return (
+            <TripInProcessDrawer
+                showEndTripButton
+                onCancel={() => {
+                    setCurrentPage(Pages.Initial);
+                }}
+            />
+        );
+    }
 
     return (
         <>
@@ -224,6 +245,10 @@ export function DriverOverlay() {
             </View>
             <TripQuotationDialog
                 isOpen={isTripQuotationOpen}
+                onConfirm={() => {
+                    setIsTripQuotationOpen(false);
+                    setCurrentPage(Pages.TripInProcess);
+                }}
                 onClose={() => {
                     setIsTripQuotationOpen(false);
                 }}
